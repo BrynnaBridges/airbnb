@@ -25,17 +25,25 @@ migrate = Migrate(app, db)
 def index():
     return render_template('index.html')
 
-@app.route("/bar")
-def bar():
-        return render_template('barchart.html')
+@app.route("/neighborhoods")
+def neighborhoods():
+        return render_template('neighborhoods.html')
 
-@app.route("/bubble")
-def bubble():
-        return render_template('bubblechart.html')
+@app.route("/heatmap")
+def heatmap():
+        return render_template('heatmap.html')
 
-@app.route("/map")
-def map():
-        return render_template('impactmap.html')
+@app.route("/bedrooms")
+def bedrooms():
+        return render_template('bedrooms.html')
+
+@app.route("/propertytype")
+def propertytype():
+        return render_template('propertytype.html')
+
+@app.route("/members")
+def members():
+        return render_template('members.html')
 
 @app.route("/data-table")
 def data():
