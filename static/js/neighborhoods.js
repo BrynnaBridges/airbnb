@@ -14,7 +14,7 @@ var svg = d3.select("#price")
           "translate(" + margin.left + "," + margin.top + ")");
 
 // Read the data and compute summary statistics for each specie
-d3.json("/raw-data").then(function(data){
+d3.json('final_data.js').then(function(data) {
 
   // Compute quartiles, median, inter quantile range min and max --> these info are then used to draw the box.
   var sumstat = d3.nest() // nest function allows to group the calculation per level of a factor
@@ -113,7 +113,7 @@ var svg2 = d3.select("#rating")
           "translate(" + margin.left + "," + margin.top + ")");
 
 // Read the data and compute summary statistics for each specie
-d3.json("/raw-data").then(function(data){
+d3.json("final_neighborhood_data.json").then(function(data) {
 
   // Compute quartiles, median, inter quantile range min and max --> these info are then used to draw the box.
   var sumstat = d3.nest() // nest function allows to group the calculation per level of a factor

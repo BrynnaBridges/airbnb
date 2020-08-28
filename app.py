@@ -16,9 +16,9 @@ from models import create_classes
 
 #https://stackabuse.com/using-sqlalchemy-with-flask-and-postgresql/
 app = Flask(__name__, static_url_path='/static',template_folder="templates")
-app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://postgres:Welcome102!@localhost:5432/meteorites_db'
+app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://postgres:Welcome102!@localhost:5432/airbnb_db'
 db = SQLAlchemy(app)
-meteorites = create_classes(db)
+airbnb = create_classes(db)
 migrate = Migrate(app, db)
 
 @app.route('/')
@@ -51,11 +51,11 @@ def data():
 
 @app.route("/raw-data")
 def data_pull():
-        results = db.session.query(meteorites.id, meteorites.name, meteorites.recclass, meteorites.mass, meteorites.fall, meteorites.year, meteorites.reclat, meteorites.reclong, meteorites.maincategory).all()
+        results = db.session.query(airbnb.index, airbnb.id, airbnb.price, airbnb.host_response_rate, airbnb.neighbourhood_cleansed, airbnb.review_scores_rating, airbnb.cancellation_policy, airbnb.property_type, airbnb.bedrooms).all()
         # initialize dictionary 
         data = []
         for result in results:
-                d = {"id":result[0], "name":result[1], "recclass" : result[2], "mass" : result[3], "fall" : result[4], "year" : result[5], "reclat" : result[6], "reclong" : result[7], "maincategory" : result[8]} 
+                d = {"index":result[0], "id":result[1], "price" : result[2], "host_response_rate" : result[3], "neighbourhood_cleansed" : result[4], "review_scores_rating" : result[5], "cancellation_policy" : result[6], "property_type" : result[7], "bedrooms" : result[8]} 
                 data.append(d)
         json_data = jsonify(data)
         return json_data
